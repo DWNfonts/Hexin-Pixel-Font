@@ -1,6 +1,11 @@
 bdffont==0.0.27
 Brotli==1.1.0
 fonttools==4.55.8
+markdown-it-py==3.0.0
+mdurl==0.1.2
 pcffont==0.0.16
+pillow==11.1.0
 pixel-font-builder==0.0.32
+Pygments==2.19.1
+rich==13.9.4
 zopfli==0.2.3.post1

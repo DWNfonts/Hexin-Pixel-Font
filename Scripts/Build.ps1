@@ -1,2 +1,3 @@
 Set-Location $PSScriptRoot
-python Build.py
+New-Item ../Output  -ItemType Directory
+python BuildChar.py
