@@ -180,4 +180,4 @@ cython_debug/
 # My configuration
 # ===
 
-Output/*.png
+Output/*

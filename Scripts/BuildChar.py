@@ -32,7 +32,7 @@ def main():
         def _generateImage(charData: str):
             image = Image.new("RGBA", (12, 8))
             draw = ImageDraw.Draw(image)
-            font = ImageFont.truetype("../Data/Fallback Components.otf", 8)
+            font = ImageFont.truetype("../Data/Fonts/Fallback Components.otf", 8)
             ascent, descent = font.getmetrics()
 
             try: full = componentIndex[char]["Full"]
@@ -65,11 +65,11 @@ def main():
         if len(result[char]) > 1:
             log.warning(f"{char} has more than one locale!")
             for locale in result[char]:
-                targetFilename = f"../Output/{char} ({locale}).png"
+                targetFilename = f"../Output/Glyphs/{char} ({locale}).png"
                 log.info(f"Generating {targetFilename}...")
                 _generateImage(result[char][locale])
         else:
-            targetFilename = f"../Output/{char}.png"
+            targetFilename = f"../Output/Glyphs/{char}.png"
             locale = list(result[char])[0]
             log.info(f"Generating {targetFilename}...")
             _generateImage(result[char][locale])
