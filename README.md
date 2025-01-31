@@ -23,3 +23,7 @@ pip install -r requirements.txt
 (It's recommended to use a virtual environment.)
 
 Then run `Scripts/Build.ps1`, and following the instructions, run `Scripts/Clean.ps1` to clean them. At that time, the script only generate characters' glyph image, not the font itself.
+
+## TODO
+
+- [ ] Support case-sensitive filesystem, like every filesystems on Windows.

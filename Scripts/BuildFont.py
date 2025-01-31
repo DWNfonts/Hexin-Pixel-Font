@@ -107,7 +107,6 @@ def main():
                             else:
                                 lineData.append(0)
                     glyphData.append(lineData)
-                log.debug(f"Glyph data: {glyphData}")
 
                 builder.glyphs.append(Glyph(
                     name=glyphname,
