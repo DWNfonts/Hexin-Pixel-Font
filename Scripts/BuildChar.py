@@ -15,19 +15,19 @@ def main():
 
     log = logging.getLogger("rich")
 
-    log.info("Reading LR Combined Chars data...")
+    log.debug("Reading LR Combined Chars data...")
 
     with open("../Data/LR Combined Chars.txt", encoding="utf-8") as f:
         text = f.read()
-        log.info("Processing data...")
+        log.debug("Processing data...")
         result = LibHexin.readLRCC(text)
 
-    log.info("Generating component index...")
+    log.debug("Generating component index...")
     componentIndex = LibHexin.getComponents(list(filter(lambda a: a.endswith(".png"),
                                                         os.listdir("../Data/Components"))))
 
     for char in result:
-        log.info(f"Processing {char}...")
+        log.debug(f"Processing {char}...")
 
         def _generateImage(charData: str):
             image = Image.new("RGBA", (12, 8))
@@ -54,24 +54,24 @@ def main():
                         f"../Data/Components/{charData[0]} (Left).png")
                     image.paste(componentImage, (0, 0), componentImage)
                 else:
-                    draw.text((0, 0), charData[0], font=font, fill="#000000FF")
+                    draw.text((0, -descent), charData[0], font=font, fill="#000000FF")
                 if right:
                     componentImage = Image.open(
                         f"../Data/Components/{charData[1]} (Right).png")
                     image.paste(componentImage, (0, 0), componentImage)
                 else:
-                    draw.text((4, 0), charData[1], font=font, fill="#000000FF")
+                    draw.text((4, -descent), charData[1], font=font, fill="#000000FF")
             image.save(targetFilename)
         if len(result[char]) > 1:
             log.warning(f"{char} has more than one locale!")
             for locale in result[char]:
                 targetFilename = f"../Output/Glyphs/{char} ({locale}).png"
-                log.info(f"Generating {targetFilename}...")
+                log.debug(f"Generating {targetFilename}...")
                 _generateImage(result[char][locale])
         else:
             targetFilename = f"../Output/Glyphs/{char}.png"
             locale = list(result[char])[0]
-            log.info(f"Generating {targetFilename}...")
+            log.debug(f"Generating {targetFilename}...")
             _generateImage(result[char][locale])
 
 
