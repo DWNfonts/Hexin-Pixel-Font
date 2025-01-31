@@ -6,9 +6,9 @@ Hexin Pixel Font (核心像素体) is a 12x8 pixel (bitmap) font for mainly Simp
 
 The word "Hexin" goes to a supervillain's name.
 
-Hexin Pixel Font is a fork of Num Kadoma's [k12x8](https://littlelimit.net/k12x8.htm).
+Hexin Pixel Font is a fork of Num Kadoma's [k12x8](https://littlelimit.net/k12x8.htm), which is licensed under the old, public-domain-equivalent M+ license.
 
-The font is under the [SIL OFL 1.1](LICENSE.md) license.
+The font is under the SIL OFL 1.1 license, the scripts are under the 3-Clause BSD license. See <LICENSE.md> for more details.
 
 (under construction)
 
