@@ -3,6 +3,7 @@ def main():
     from pixel_font_builder.glyph import Glyph
     import logging
     import rich.logging
+    from pixel_font_builder import opentype
 
     FORMAT = "%(message)s"
     logging.basicConfig(
@@ -11,7 +12,7 @@ def main():
 
     log = logging.getLogger("rich")
 
-    def _create_builder():
+    def _create_builder(outlineStyle=None):
         log.debug("Generating font metadata...")
 
         builder = pixel_font_builder.FontBuilder()
@@ -34,15 +35,25 @@ def main():
         sha = repo.head.object.hexsha
 
         import json
-        with open("../Data/Metadata.json") as f: metadata = json.load(f)
+        with open("../Data/Metadata.json") as f:
+            metadata = json.load(f)
 
         builder.meta_info.version = metadata["version"] + "." + sha
 
         import datetime
         modifiedTime = repo.head.object.committed_date
-        builder.meta_info.created_time = datetime.datetime.fromtimestamp(1738226737)
-        builder.meta_info.modified_time = datetime.datetime.fromtimestamp(modifiedTime)
-        builder.meta_info.family_name = "Hexin Pixel Font"
+        builder.meta_info.created_time = datetime.datetime.fromtimestamp(
+            1738226737)
+        builder.meta_info.modified_time = datetime.datetime.fromtimestamp(
+            modifiedTime)
+
+        match outlineStyle:
+            case "squareDot":
+                builder.meta_info.family_name = "Hexin Pixel Font, Square Dot"
+            case "circleDot":
+                builder.meta_info.family_name = "Hexin Pixel Font, Circle Dot"
+            case _:
+                builder.meta_info.family_name = "Hexin Pixel Font"
         builder.meta_info.weight_name = pixel_font_builder.WeightName.REGULAR
         builder.meta_info.serif_style = pixel_font_builder.SerifStyle.SANS_SERIF
         builder.meta_info.slant_style = pixel_font_builder.SlantStyle.NORMAL
@@ -143,13 +154,31 @@ def main():
                     bitmap=glyphData
                 ))
 
+                match outlineStyle:
+                    case "squareDot":
+                        builder.opentype_config.outlines_painter = opentype.SquareDotOutlinesPainter()
+                    case "circleDot":
+                        builder.opentype_config.outlines_painter = opentype.CircleDotOutlinesPainter()
+                    case _:
+                        pass
+
         builder.character_mapping.update(mapping)
 
         return builder
 
-    builder = _create_builder()
-    if builder != None:
-        builder.save_otf("../Output/HexinPixelFont.otf")
+    for currentOutlineStyle in [None, "squareDot", "circleDot"]:
+        builder = _create_builder(currentOutlineStyle)
+        if builder != None:
+            if currentOutlineStyle != None:
+                builder.save_otf(
+                    f"../Output/HexinPixelFont.{currentOutlineStyle}.otf")
+            else:
+                builder.save_otf("../Output/HexinPixelFont.otf")
+                builder.save_otf("../Output/HexinPixelFont.woff2",
+                                 flavor=opentype.Flavor.WOFF2)
+                builder.save_ttf("../Output/HexinPixelFont.ttf")
+                builder.save_bdf("../Output/HexinPixelFont.bdf")
+                builder.save_pcf("../Output/HexinPixelFont.pcf")
 
 
 if __name__ == '__main__':
