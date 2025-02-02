@@ -29,11 +29,19 @@ def main():
         builder.font_metric.x_height = 0
         builder.font_metric.cap_height = 0
 
-        builder.meta_info.version = "0.0.1"
-        import datetime
-        builder.meta_info.created_time = datetime.datetime.now()
-        builder.meta_info.modified_time = builder.meta_info.created_time
+        import git
+        repo = git.Repo(search_parent_directories=True)
+        sha = repo.head.object.hexsha
 
+        import json
+        metadata = json.loads("../Output/metadata.json")
+
+        builder.meta_info.version = metadata["version"] + "." + sha
+
+        import datetime
+        modifiedTime = repo.head.object.committed_date
+        builder.meta_info.created_time = datetime.datetime.fromtimestamp(1738226737)
+        builder.meta_info.modified_time = datetime.datetime.fromtimestamp(modifiedTime)
         builder.meta_info.family_name = "Hexin Pixel Font"
         builder.meta_info.weight_name = pixel_font_builder.WeightName.REGULAR
         builder.meta_info.serif_style = pixel_font_builder.SerifStyle.SANS_SERIF
@@ -123,7 +131,8 @@ def main():
                 width = 6 if (int(glyphname.split(
                     ".")[0][1:], base=16) in range(0x00, 0x80)) else 12
 
-                if width == 6: log.warning(f"Half-width char {glyphname}")
+                if width == 6:
+                    log.warning(f"Half-width char {glyphname}")
 
                 builder.glyphs.append(Glyph(
                     name=glyphname,
