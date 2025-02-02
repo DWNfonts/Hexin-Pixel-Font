@@ -26,4 +26,4 @@ Then run `Scripts/Build.ps1`, and following the instructions, run `Scripts/Clean
 
 ## TODO
 
-- [ ] Support case-sensitive filesystem, like every filesystems on Windows.
+- [x] Support case-sensitive filesystem, like every filesystems on Windows.
