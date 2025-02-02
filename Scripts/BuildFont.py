@@ -120,10 +120,15 @@ def main():
                                 lineData.append(0)
                     glyphData.append(lineData)
 
+                width = 6 if (int(glyphname.split(
+                    ".")[0][1:], base=16) in range(0x00, 0x80)) else 12
+
+                if width == 6: log.warning(f"Half-width char {glyphname}")
+
                 builder.glyphs.append(Glyph(
                     name=glyphname,
                     horizontal_origin=(0, -1),
-                    advance_width=12,
+                    advance_width=width,
                     vertical_origin=(-1, 0),
                     advance_height=8,
                     bitmap=glyphData
