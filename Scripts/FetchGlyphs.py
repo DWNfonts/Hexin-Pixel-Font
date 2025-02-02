@@ -28,7 +28,7 @@ def main():
         ascent, descent = font.getmetrics()
         draw.text((0, 0), char, font=font, fill="#000000FF")
         try:
-            image.save(f"../Output/Glyphs/{char}.png")
+            image.save(f"../Output/Glyphs/u{("%04X" % ord(char))}.png")
         except:
             log.warning("%s is invaild in this environment, skip" % char)
 

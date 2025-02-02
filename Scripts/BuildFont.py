@@ -80,18 +80,30 @@ def main():
             if file.endswith(".png"):
                 if "(" in file:  # Multi locales
                     import re
-                    locale = re.sub("[ \\(\\)\\[\\]]", "", file[1:-4]).lower()
-                    glyphname = "u%s.%s" % (hex(ord(file[0]))[2:], locale)
+                    m = re.findall("\\([^ ]*\\)", file)
+                    try:
+                        if m != None:
+                            locale = m[0][1:-1].lower()
+                        else:
+                            locale = ""
+                    except:
+                        locale = ""
+                    if locale == "":
+                        glyphname = "%s" % file.replace(".", " ").split(" ")[0]
+                    else:
+                        glyphname = "%s.%s" % (file.replace(
+                            ".", " ").split(" ")[0], locale)
                 else:
-                    glyphname = "u%s" % hex(ord(file[0]))[2:]
+                    glyphname = "%s" % file.replace(".", " ").split(" ")[0]
                 isGSource = (
-                    "." in glyphname and "G" in glyphname) or "." not in glyphname
+                    "." in glyphname and "g" in glyphname) or "." not in glyphname
                 if isGSource:
-                    mapping[ord(file[0])] = glyphname
+                    mapping[int(glyphname.split(".")[0]
+                                [1:], base=16)] = glyphname
                 else:
                     pass  # TODO: Multi-locale support, mostly unnecessary
                 log.debug(f"Glyph {glyphname}, {
-                         "is" if isGSource else "not"} G Source")
+                    "is" if isGSource else "not"} G Source")
 
                 from PIL import Image
                 image = Image.open("../Output/Glyphs/" + file)
