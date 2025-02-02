@@ -34,7 +34,7 @@ def main():
         sha = repo.head.object.hexsha
 
         import json
-        metadata = json.loads("../Output/metadata.json")
+        with open("../Data/Metadata.json") as f: metadata = json.load(f)
 
         builder.meta_info.version = metadata["version"] + "." + sha
 
