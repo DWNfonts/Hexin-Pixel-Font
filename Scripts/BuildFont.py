@@ -125,15 +125,15 @@ def main():
                             ".", " ").split(" ")[0], locale)
                 else:
                     glyphname = "%s" % file.replace(".", " ").split(" ")[0]
-                isGSource = (
-                    "." in glyphname and "g" in glyphname) or "." not in glyphname
-                if isGSource:
+                isJSource = (
+                    "." in glyphname and "j" in glyphname) or "." not in glyphname
+                if isJSource:
                     mapping[int(glyphname.split(".")[0]
                                 [1:], base=16)] = glyphname
                 else:
                     pass  # TODO: Multi-locale support, mostly unnecessary
                 log.debug(f"Glyph {glyphname}, {
-                    "is" if isGSource else "not"} G Source")
+                    "is" if isJSource else "not"} G Source")
 
                 from PIL import Image
                 image = Image.open("../Output/Glyphs/" + file)
