@@ -12,10 +12,10 @@ def main():
     bigFont = ImageFont.truetype("../Data/Fonts/Style Reference.otf", 12)
     smallFont = ImageFont.truetype("../Data/Fonts/Fallback Components.otf", 8)
 
-    bigColor = (0, 0, 0)
-    smallColor = (0, 0, 0)
-    glyphBgColor = (255, 255, 255)
-    bgColor = (127, 127, 127)
+    bigColor = (128, 216, 255)
+    smallColor = (128, 216, 255)
+    glyphBgColor = (0, 145, 234)
+    bgColor = (0, 176, 255)
 
     draw.rectangle(
         ((0, 0), (widthOfChars * 20 - 1, heightOfChars * 20 - 1)), fill=bgColor)
@@ -32,7 +32,7 @@ def main():
             draw.text((smallX, smallY),
                       chars[charID], smallColor, font=smallFont)
             draw.rectangle(((i * 20 + 8, j * 20 + 12),
-                           (i * 20 + 19, j * 20 + 18)), fill=glyphBgColor)
+                           (i * 20 + 18, j * 20 + 18)), fill=glyphBgColor)
 
     image.save("../Output/Scaffold.png")
 
