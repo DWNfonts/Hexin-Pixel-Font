@@ -32,28 +32,39 @@ def main():
 
         import git
         repo = git.Repo(search_parent_directories=True)
-        sha = repo.head.object.hexsha
+        commits = list(repo.iter_commits("HEAD"))
+        revision = "r" + str(len(commits))
 
         import json
         with open("../Data/Metadata.json") as f:
             metadata = json.load(f)
 
-        builder.meta_info.version = metadata["version"] + "." + sha
-
         import datetime
-        modifiedTime = repo.head.object.committed_date
-        builder.meta_info.created_time = datetime.datetime.fromtimestamp(
-            1738226737)
-        builder.meta_info.modified_time = datetime.datetime.fromtimestamp(
-            modifiedTime)
+        modifiedTimeInTimestamp = repo.head.object.committed_date
+
+        createdTime = datetime.datetime.fromtimestamp(
+            modifiedTimeInTimestamp)
+
+        builder.meta_info.created_time = createdTime
+
+        builder.meta_info.modified_time = datetime.datetime.now()
+
+        modifiedTimeInText = datetime.datetime.now().strftime("%y%m%d-%H%M")
 
         match outlineStyle:
             case "squareDot":
                 builder.meta_info.family_name = "Hexin Pixel Font, Square Dot"
+                shortCode = "square"
             case "circleDot":
                 builder.meta_info.family_name = "Hexin Pixel Font, Circle Dot"
+                shortCode = "circle"
             case _:
                 builder.meta_info.family_name = "Hexin Pixel Font"
+                shortCode = "normal"
+
+        builder.meta_info.version = ".".join(
+            (metadata["version"], revision, shortCode, repo.active_branch.name, modifiedTimeInText))
+
         builder.meta_info.weight_name = pixel_font_builder.WeightName.REGULAR
         builder.meta_info.serif_style = pixel_font_builder.SerifStyle.SANS_SERIF
         builder.meta_info.slant_style = pixel_font_builder.SlantStyle.NORMAL
