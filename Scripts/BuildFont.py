@@ -52,10 +52,10 @@ def main():
         modifiedTimeInText = datetime.datetime.now().strftime("%y%m%d-%H%M")
 
         match outlineStyle:
-            case "squareDot":
+            case "Square Dot":
                 builder.meta_info.family_name = "Hexin Pixel Font, Square Dot"
                 shortCode = "square"
-            case "circleDot":
+            case "Circle Dot":
                 builder.meta_info.family_name = "Hexin Pixel Font, Circle Dot"
                 shortCode = "circle"
             case _:
@@ -166,9 +166,9 @@ def main():
                 ))
 
                 match outlineStyle:
-                    case "squareDot":
+                    case "Square Dot":
                         builder.opentype_config.outlines_painter = opentype.SquareDotOutlinesPainter()
-                    case "circleDot":
+                    case "Circle Dot":
                         builder.opentype_config.outlines_painter = opentype.CircleDotOutlinesPainter()
                     case _:
                         pass
@@ -180,7 +180,7 @@ def main():
     import sys
     if len(sys.argv) > 1:
         if sys.argv[1] == "fun":
-            outlineStyles = [None, "squareDot", "circleDot"]
+            outlineStyles = [None, "Square Dot", "Circle Dot"]
         else:
             outlineStyles = [None]
     else:
@@ -195,19 +195,19 @@ def main():
                 log.info(f"Building font with {
                          currentOutlineStyle} outline style (OTF)...")
                 builder.save_otf(
-                    f"../Output/HexinPixelFont.{currentOutlineStyle}.otf")
+                    f"../Output/Hexin Pixel Font, {currentOutlineStyle}.otf")
             else:
                 log.info("Building font (OTF)...")
-                builder.save_otf("../Output/HexinPixelFont.otf")
+                builder.save_otf("../Output/Hexin Pixel Font.otf")
                 log.info("Building font (WOFF2)...")
-                builder.save_otf("../Output/HexinPixelFont.woff2",
+                builder.save_otf("../Output/Hexin Pixel Font.woff2",
                                  flavor=opentype.Flavor.WOFF2)
                 log.info("Building font (TTF)...")
-                builder.save_ttf("../Output/HexinPixelFont.ttf")
+                builder.save_ttf("../Output/Hexin Pixel Font.ttf")
                 log.info("Building font (BDF)...")
-                builder.save_bdf("../Output/HexinPixelFont.bdf")
+                builder.save_bdf("../Output/Hexin Pixel Font.bdf")
                 log.info("Building font (PCF)...")
-                builder.save_pcf("../Output/HexinPixelFont.pcf")
+                builder.save_pcf("../Output/Hexin Pixel Font.pcf")
 
 
 if __name__ == '__main__':
