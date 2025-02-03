@@ -7,7 +7,7 @@ def main():
 
     FORMAT = "%(message)s"
     logging.basicConfig(
-        level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[rich.logging.RichHandler()]
+        level=logging.INFO, format=FORMAT, datefmt="[%X]", handlers=[rich.logging.RichHandler()]
     )
 
     log = logging.getLogger("rich")
@@ -166,18 +166,36 @@ def main():
 
         return builder
 
-    for currentOutlineStyle in [None, "squareDot", "circleDot"]:
+    import sys
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "fun":
+            outlineStyles = [None, "squareDot", "circleDot"]
+        else:
+            outlineStyles = [None]
+    else:
+        outlineStyles = [None]
+
+    for currentOutlineStyle in outlineStyles:
+        log.info(f"Current outline style: {
+                 currentOutlineStyle}, creating builder...")
         builder = _create_builder(currentOutlineStyle)
         if builder != None:
             if currentOutlineStyle != None:
+                log.info(f"Building font with {
+                         currentOutlineStyle} outline style (OTF)...")
                 builder.save_otf(
                     f"../Output/HexinPixelFont.{currentOutlineStyle}.otf")
             else:
+                log.info("Building font (OTF)...")
                 builder.save_otf("../Output/HexinPixelFont.otf")
+                log.info("Building font (WOFF2)...")
                 builder.save_otf("../Output/HexinPixelFont.woff2",
                                  flavor=opentype.Flavor.WOFF2)
+                log.info("Building font (TTF)...")
                 builder.save_ttf("../Output/HexinPixelFont.ttf")
+                log.info("Building font (BDF)...")
                 builder.save_bdf("../Output/HexinPixelFont.bdf")
+                log.info("Building font (PCF)...")
                 builder.save_pcf("../Output/HexinPixelFont.pcf")
 
 

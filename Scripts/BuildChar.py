@@ -10,22 +10,23 @@ import time
 def main():
     FORMAT = "%(message)s"
     logging.basicConfig(
-        level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[rich.logging.RichHandler()]
+        level=logging.INFO, format=FORMAT, datefmt="[%X]", handlers=[rich.logging.RichHandler()]
     )
 
     log = logging.getLogger("rich")
 
-    log.debug("Reading LR Combined Chars data...")
+    log.info("Reading LR Combined Chars data...")
 
     with open("../Data/LR Combined Chars.txt", encoding="utf-8") as f:
         text = f.read()
         log.debug("Processing data...")
         result = LibHexin.readLRCC(text)
 
-    log.debug("Generating component index...")
+    log.info("Generating component index...")
     componentIndex = LibHexin.getComponents(list(filter(lambda a: a.endswith(".png"),
                                                         os.listdir("../Data/Components"))))
 
+    log.info("Processing chars...")
     for char in result:
         log.debug(f"Processing {char}...")
 

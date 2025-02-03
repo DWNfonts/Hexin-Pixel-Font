@@ -7,19 +7,20 @@ import rich.logging
 def main():
     FORMAT = "%(message)s"
     logging.basicConfig(
-        level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[rich.logging.RichHandler()]
+        level=logging.INFO, format=FORMAT, datefmt="[%X]", handlers=[rich.logging.RichHandler()]
     )
 
     log = logging.getLogger("rich")
 
     charset = []
-    log.debug("Reading charset...")
+    log.info("Reading charset...")
     with open("../Data/Fonts/k12x8 with GB Symbols.kbitx") as f:
         doc = xml.dom.minidom.parse(f)
         for glyphs in doc.getElementsByTagName("kbits")[0].getElementsByTagName("g"):
             if glyphs.hasAttribute("u"):
                 charset.append(chr(int(glyphs.getAttribute("u"))))
 
+    log.info("Building glyphs...")
     for char in charset:
         log.debug("Building glyph for %s" % char)
         image = Image.new("RGBA", (12, 8))
