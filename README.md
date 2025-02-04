@@ -27,3 +27,9 @@ Then run `Scripts/Build.ps1`, and following the instructions, run `Scripts/Clean
 ## TODO
 
 - [x] Support case-sensitive filesystem, like every filesystems on Windows.
+
+## Credits
+
+Thanks to the original project [k12x8](https://littlelimit.net/k12x8.htm) and its author [Num Kadoma](https://littlelimit.net/).
+
+Thanks to [@TakWolf on GitHub](https://github.com/TakWolf), which developed the [`pixel_font_builder` library](https://github.com/TakWolf/pixel-font-builder) (used for generating fonts), and [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) (the reference of the bitmap style).
