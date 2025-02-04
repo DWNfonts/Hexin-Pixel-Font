@@ -1,3 +1,7 @@
+from git import exc
+from pixel_font_builder import glyph
+
+
 def main():
     import pixel_font_builder
     from pixel_font_builder.glyph import Glyph
@@ -13,6 +17,28 @@ def main():
     log = logging.getLogger("rich")
 
     def _create_builder(outlineStyle=None):
+
+        def _getGlyphName(filename: str):
+            if "(" in filename:  # Multi locales
+                import re
+                m = re.findall("\\([^ ]*\\)", filename)
+                try:
+                    if m != None:
+                        locale = m[0][1:-1].lower()
+                    else:
+                        locale = ""
+                except:
+                    locale = ""
+                if locale == "":
+                    glyphname = "%s" % filename.replace(".", " ").split(" ")[0]
+                else:
+                    glyphname = "%s.%s" % (filename.replace(
+                        ".", " ").split(" ")[0], locale)
+            else:
+                locale, glyphname = "", "%s" % filename.replace(".", " ").split(" ")[
+                    0]
+            return locale, glyphname
+
         log.debug("Generating font metadata...")
 
         builder = pixel_font_builder.FontBuilder()
@@ -108,32 +134,15 @@ def main():
         for file in filelist:
             log.debug(f"Processing {file}")
             if file.endswith(".png"):
-                if "(" in file:  # Multi locales
-                    import re
-                    m = re.findall("\\([^ ]*\\)", file)
-                    try:
-                        if m != None:
-                            locale = m[0][1:-1].lower()
-                        else:
-                            locale = ""
-                    except:
-                        locale = ""
-                    if locale == "":
-                        glyphname = "%s" % file.replace(".", " ").split(" ")[0]
-                    else:
-                        glyphname = "%s.%s" % (file.replace(
-                            ".", " ").split(" ")[0], locale)
-                else:
-                    glyphname = "%s" % file.replace(".", " ").split(" ")[0]
-                isJSource = (
-                    "." in glyphname and "j" in glyphname) or "." not in glyphname
+                locale, glyphname = _getGlyphName(file)
+                isJSource = "j" in locale
                 if isJSource:
                     mapping[int(glyphname.split(".")[0]
                                 [1:], base=16)] = glyphname
                 else:
                     pass  # TODO: Multi-locale support, mostly unnecessary
                 log.debug(f"Glyph {glyphname}, {
-                    "is" if isJSource else "not"} G Source")
+                    "is" if isJSource else "not"} J Source")
 
                 from PIL import Image
                 image = Image.open("../Output/Glyphs/" + file)
@@ -172,6 +181,21 @@ def main():
                         builder.opentype_config.outlines_painter = opentype.CircleDotOutlinesPainter()
                     case _:
                         pass
+
+        # Here we'd better fix some mappings of characters that in the G source but not in J source.
+        # These chars' mappings are set to G source's.
+
+        for file in filelist:
+            log.debug("Finding unencoded glyphs...")
+            if file.endswith(".png"):
+                locale, glyphname = _getGlyphName(file)
+                isGSource = "g" in locale
+                try:
+                    mapping[int(glyphname.split(".")[0]
+                                [1:], base=16)]
+                except:
+                    mapping[int(glyphname.split(".")[0]
+                                [1:], base=16)] = glyphname
 
         builder.character_mapping.update(mapping)
 
