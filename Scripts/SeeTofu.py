@@ -1,5 +1,5 @@
 def main():
-    charsetFilename = "../Data/Charsets/Extremely Common Used Characters.txt"
+    charsetFilename = "../Data/Charsets/Beta Used Chars.txt"
     charset = ["u"+i
                for i in open(charsetFilename, encoding="utf-8").read().split("\n")]
 
