@@ -1,2 +1,2 @@
 Set-Location $PSScriptRoot
-Remove-Item ../Output/* -Force
+Remove-Item ../Output/* -Force -Recurse
