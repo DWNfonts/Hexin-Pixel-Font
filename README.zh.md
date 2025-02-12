@@ -19,7 +19,7 @@
 要构建他你必须安装最新版的PowerShell和Python。接着运行下列脚本：
 
 ```powershell
-pip install -r pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 （建议使用虚拟环境。）
@@ -30,4 +30,4 @@ pip install -r pip install -r requirements.txt
 
 感谢原作[k12x8](https://littlelimit.net/k12x8.htm)及作者[门真奈武](https://littlelimit.net/)。
 
-感谢[GitHub上的@TakWolf](https://github.com/TakWolf)，他开发了[`pixel_font_builder`库](https://github.com/TakWolf/pixel-font-builder)（用来生成字体）级[缝合像素字体](https://github.com/TakWolf/fusion-pixel-font)（字形风格参考）。
+感谢[GitHub上的@TakWolf](https://github.com/TakWolf)，他开发了[`pixel_font_builder`库](https://github.com/TakWolf/pixel-font-builder)（用来生成字体）及[缝合像素字体](https://github.com/TakWolf/fusion-pixel-font)（字形风格参考）。
