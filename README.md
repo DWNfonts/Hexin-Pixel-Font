@@ -12,7 +12,7 @@ The word "Hexin" goes to a supervillain's name in a Chinese TV series called 开
 
 Hexin Pixel Font's glyphs is based on Num Kadoma's [k12x8](https://littlelimit.net/k12x8.htm), which is licensed under the old, public-domain-equivalent M+ license.
 
-The font is under the SIL OFL 1.1, the scripts are under the 3-Clause BSD license. See <LICENSE.md> for more details.
+The font is under the SIL OFL 1.1, the scripts are under the 3-Clause BSD license. See [LICENSE.md](LICENSE.md) for more details.
 
 (under construction)
 

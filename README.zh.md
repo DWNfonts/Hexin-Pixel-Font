@@ -10,7 +10,7 @@
 
 核心像素体的字形基于门真奈武的[k12x8](https://littlelimit.net/k12x8.htm)，后者以公有领域等价的老M+协议释出。
 
-这字体以SIL OFL 1.1释出，脚本以3句BSD协议释出。详见<LICENSE.md>。
+这字体以SIL OFL 1.1释出，脚本以3句BSD协议释出。详见[LICENSE.md](LICENSE.md)。
 
 （未完工）
 
