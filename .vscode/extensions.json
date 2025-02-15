@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        // For most cases, they use a non-libre Visual Studio Code (tm) which supports Pylance. For VSCodium users, here's what I recommend:
+        // "ms-pyright.pyright",
+        // (One of any formatters in https://code.visualstudio.com/docs/python/formatting ),
+        "ms-python.debugpy",
+        "ms-vscode.powershell"
+    ]
+}
