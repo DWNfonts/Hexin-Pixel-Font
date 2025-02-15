@@ -30,6 +30,6 @@ Then run `Scripts/Build.ps1` to compile the font, run `Scripts/Clean.ps1` to cle
 
 ## Credits
 
-Thanks to the original project [k12x8](https://littlelimit.net/k12x8.htm) and its author [Num Kadoma](https://littlelimit.net/).
+Thanks the original project [k12x8](https://littlelimit.net/k12x8.htm) and its author [Num Kadoma](https://littlelimit.net/).
 
-Thanks to [@TakWolf on GitHub](https://github.com/TakWolf), which developed the [`pixel_font_builder` library](https://github.com/TakWolf/pixel-font-builder) (used for generating fonts), and [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) (the reference of the glyphs' style).
+Thanks [@TakWolf on GitHub](https://github.com/TakWolf), which developed the [`pixel_font_builder` library](https://github.com/TakWolf/pixel-font-builder) (used for generating fonts), and [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) (the reference of the glyphs' style).
