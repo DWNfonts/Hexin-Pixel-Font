@@ -33,3 +33,5 @@ Then run `Scripts/Build.ps1` to compile the font, run `Scripts/Clean.ps1` to cle
 Thanks the original project [k12x8](https://littlelimit.net/k12x8.htm) and its author [Num Kadoma](https://littlelimit.net/).
 
 Thanks [@TakWolf on GitHub](https://github.com/TakWolf), which developed the [`pixel_font_builder` library](https://github.com/TakWolf/pixel-font-builder) (used for generating fonts), and [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) (the reference of the glyphs' style).
+
+I will also credit [BMC](https://codeberg.org/DWNfonts/BillionsMustComplete), which is a specific 8x8 OFL-licensed pixel font.
