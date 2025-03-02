@@ -10,7 +10,7 @@ def main():
     image = Image.new("RGBA", (widthOfChars * 20, heightOfChars * 20))
     draw = ImageDraw.Draw(image)
     bigFont = ImageFont.truetype("../Data/Fonts/Style Reference.otf", 12)
-    smallFont = ImageFont.truetype("../Data/Fonts/Fallback Components.otf", 8)
+    smallFont = ImageFont.truetype("../Data/Fonts/Fallback Components.ttf", 8)
 
     bigColor = (128, 216, 255)
     smallColor = (128, 216, 255)

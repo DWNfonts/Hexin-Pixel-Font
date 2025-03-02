@@ -34,7 +34,7 @@ def main():
             image = Image.new("RGBA", (12, 8))
             draw = ImageDraw.Draw(image)
             font = ImageFont.truetype(
-                "../Data/Fonts/Fallback Components.otf", 8)
+                "../Data/Fonts/Fallback Components.ttf", 8)
             ascent, descent = font.getmetrics()
 
             try:
