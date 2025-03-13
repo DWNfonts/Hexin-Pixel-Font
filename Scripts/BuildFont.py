@@ -137,9 +137,9 @@ def main():
         builder.glyphs.append(
             Glyph(
                 name=".notdef",
-                horizontal_origin=(0, -1),
+                horizontal_offset=(0, -1),
                 advance_width=12,
-                vertical_origin=(-1, 0),
+                vertical_offset=(-1, 0),
                 advance_height=8,
                 bitmap=[
                     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
@@ -202,9 +202,9 @@ def main():
                 builder.glyphs.append(
                     Glyph(
                         name=glyphname,
-                        horizontal_origin=(0, -1),
+                        horizontal_offset=(0, -1),
                         advance_width=width,
-                        vertical_origin=(-1, 0),
+                        vertical_offset=(-1, 0),
                         advance_height=8,
                         bitmap=glyphData,
                     )
