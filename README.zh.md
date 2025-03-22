@@ -12,7 +12,7 @@
 
 这字体以SIL OFL 1.1释出，脚本以3句BSD协议释出。详见[LICENSE.md](LICENSE.md)。
 
-（未完工）
+> **未完工：**有些字是自动生成的很丑（或不正确），创个Codeberg工单或者在itch.io上讨论让我知道！
 
 ## 构建
 
@@ -31,3 +31,5 @@ pip install -r requirements.txt
 感谢原作[k12x8](https://littlelimit.net/k12x8.htm)及作者[门真奈武](https://littlelimit.net/)。
 
 感谢[GitHub上的@TakWolf](https://github.com/TakWolf)，他开发了[`pixel_font_builder`库](https://github.com/TakWolf/pixel-font-builder)（用来生成字体）及[缝合像素字体](https://github.com/TakWolf/fusion-pixel-font)（字形风格参考）。
+
+也感谢[BMC](https://codeberg.org/DWNfonts/BillionsMustComplete)，这是特制的8x8的OFL授权像素字体。

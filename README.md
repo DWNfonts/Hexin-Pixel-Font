@@ -14,7 +14,7 @@ Hexin Pixel Font's glyphs is based on Num Kadoma's [k12x8](https://littlelimit.n
 
 The font is under the SIL OFL 1.1, the scripts are under the 3-Clause BSD license. See [LICENSE.md](LICENSE.md) for more details.
 
-(under construction)
+> **Under construction:** some chars are auto-generated and look ugly (or incorrect). You can create a [Codeberg issue] or discuss on itch.io (coming soon) to let me know!
 
 ## Building
 
