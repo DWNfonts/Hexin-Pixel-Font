@@ -2,7 +2,7 @@ from git import exc
 from pixel_font_builder import glyph
 
 
-def main():
+def main(fun: bool = True):
     import pixel_font_builder
     from pixel_font_builder.glyph import Glyph
     import logging
@@ -69,7 +69,7 @@ def main():
 
         import json
 
-        with open("../Data/Metadata.json") as f:
+        with open("Data/Metadata.json") as f:
             metadata = json.load(f)
 
         import datetime
@@ -132,7 +132,7 @@ def main():
 
         import os
 
-        filelist = os.listdir("../Output/Glyphs")
+        filelist = os.listdir("Output/Glyphs")
 
         builder.glyphs.append(
             Glyph(
@@ -172,7 +172,7 @@ def main():
 
                 from PIL import Image
 
-                image = Image.open("../Output/Glyphs/" + file)
+                image = Image.open("Output/Glyphs/" + file)
                 width, height = image.size
                 px = image.load()
                 glyphData = []
@@ -239,15 +239,7 @@ def main():
 
         return builder
 
-    import sys
-
-    if len(sys.argv) > 1:
-        if sys.argv[1] == "fun":
-            outlineStyles = [None, "Square Dot", "Circle Dot"]
-        else:
-            outlineStyles = [None]
-    else:
-        outlineStyles = [None]
+    outlineStyles = [None, "Square Dot", "Circle Dot"] if fun else [None]
 
     for currentOutlineStyle in outlineStyles:
         log.info(
@@ -261,23 +253,26 @@ def main():
                     f"Building font with {
                          currentOutlineStyle} outline style (OTF)..."
                 )
-                builder.save_otf(
-                    f"../Output/Hexin Pixel Font, {currentOutlineStyle}.otf"
-                )
+                builder.save_otf(f"Output/Hexin Pixel Font, {currentOutlineStyle}.otf")
             else:
                 log.info("Building font (OTF)...")
-                builder.save_otf("../Output/Hexin Pixel Font.otf")
+                builder.save_otf("Output/Hexin Pixel Font.otf")
                 log.info("Building font (WOFF2)...")
                 builder.save_otf(
-                    "../Output/Hexin Pixel Font.woff2", flavor=opentype.Flavor.WOFF2
+                    "Output/Hexin Pixel Font.woff2", flavor=opentype.Flavor.WOFF2
                 )
                 log.info("Building font (TTF)...")
-                builder.save_ttf("../Output/Hexin Pixel Font.ttf")
+                builder.save_ttf("Output/Hexin Pixel Font.ttf")
                 log.info("Building font (BDF)...")
-                builder.save_bdf("../Output/Hexin Pixel Font.bdf")
+                builder.save_bdf("Output/Hexin Pixel Font.bdf")
                 log.info("Building font (PCF)...")
-                builder.save_pcf("../Output/Hexin Pixel Font.pcf")
+                builder.save_pcf("Output/Hexin Pixel Font.pcf")
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    try:
+        main(sys.argv[1] == "fun")
+    except:
+        main(False)

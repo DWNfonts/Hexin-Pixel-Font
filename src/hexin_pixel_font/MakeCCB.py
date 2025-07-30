@@ -18,7 +18,8 @@ def main():
     bgColor = (0, 176, 255)
 
     draw.rectangle(
-        ((0, 0), (widthOfChars * 20 - 1, heightOfChars * 20 - 1)), fill=bgColor)
+        ((0, 0), (widthOfChars * 20 - 1, heightOfChars * 20 - 1)), fill=bgColor
+    )
     for i in range(0, widthOfChars):
         for j in range(0, heightOfChars):
             bigX, bigY = i * 20 + 8, j * 20
@@ -29,10 +30,11 @@ def main():
                 charID = len(chars) - 1
 
             draw.text((bigX, bigY), chars[charID], bigColor, font=bigFont)
-            draw.text((smallX, smallY),
-                      chars[charID], smallColor, font=smallFont)
-            draw.rectangle(((i * 20 + 8, j * 20 + 12),
-                           (i * 20 + 18, j * 20 + 18)), fill=glyphBgColor)
+            draw.text((smallX, smallY), chars[charID], smallColor, font=smallFont)
+            draw.rectangle(
+                ((i * 20 + 8, j * 20 + 12), (i * 20 + 18, j * 20 + 18)),
+                fill=glyphBgColor,
+            )
 
     image.save("../Output/Scaffold.png")
 

@@ -1,9 +1,11 @@
 def main():
     charsetFilename = "../Data/Charsets/Beta Used Chars.txt"
-    charset = ["u"+i
-               for i in open(charsetFilename, encoding="utf-8").read().split("\n")]
+    charset = [
+        "u" + i for i in open(charsetFilename, encoding="utf-8").read().split("\n")
+    ]
 
     import os
+
     filenames = os.listdir("../Output/Glyphs")
     for filename in filenames:
         codepoint = filename.replace(".", " ").split(" ")[0]
