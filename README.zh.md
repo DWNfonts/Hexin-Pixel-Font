@@ -16,15 +16,13 @@
 
 ## 构建
 
-要构建他你必须安装最新版的PowerShell和Python。接着运行下列脚本：
+装完依赖后运行这个指令：
 
-```powershell
-pip install -r requirements.txt
+```
+python -m hexin_pixel_font <command>
 ```
 
-（建议使用虚拟环境。）
-
-然后运行`Scripts/Build.ps1`去编译字体，运行`Scripts/Clean.ps1`来清除。
+`<command>`可以是`clean`或`build`。
 
 ## 鸣谢
 

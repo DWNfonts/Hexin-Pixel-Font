@@ -18,15 +18,13 @@ The font is under the SIL OFL 1.1, the scripts are under the 3-Clause BSD licens
 
 ## Building
 
-To build it you should have the latest version of Powershell & Python installed. Then, run the following command:
+After you installed dependencies, run this command:
 
-```powershell
-pip install -r requirements.txt
+```
+python -m hexin_pixel_font <command>
 ```
 
-(It's recommended to use a virtual environment.)
-
-Then run `Scripts/Build.ps1` to compile the font, run `Scripts/Clean.ps1` to clean them. 
+The `<command>` argument can be `clean` or `build`.
 
 ## Credits
 
